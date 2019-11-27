@@ -1,5 +1,13 @@
 import React from "react";
 import Head from "next/head";
+import dynamic from "next/dynamic";
+
+// We need to make sure anything using `react-three-fiber` is not server rendered
+// as there is an issue with `resize-observer` stopping it from being imported
+// by Node.js.
+const ThreeDeeStuff = dynamic(() => import("../components/ThreeDeeStuff"), {
+  ssr: false
+});
 
 const Home = () => (
   <div>
@@ -12,6 +20,8 @@ const Home = () => (
       <h1 className="title">Team Extreme Playground</h1>
       <p className="description">Alex, Karl, and Pete.</p>
     </div>
+
+    <ThreeDeeStuff />
 
     <style jsx>{`
       :global(body) {
