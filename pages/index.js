@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 // We need to make sure anything using `react-three-fiber` is not server rendered
 // as there is an issue with `resize-observer` stopping it from being imported
 // by Node.js.
+// https://github.com/juggle/resize-observer/issues/82
 const ThreeDeeStuff = dynamic(() => import("../components/ThreeDeeStuff"), {
   ssr: false
 });
